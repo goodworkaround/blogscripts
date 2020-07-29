@@ -15,26 +15,30 @@ $connectedOrganizations.value | ForEach-Object {
 # List as table
 $list = $connectedOrganizations.value | Foreach {
     $org = $_
-    $org.internalSponsors | ForEach-Object {
-        [PSCustomObject] @{
-            Type = "InternalSponsor"
-            TenantId = $org.identitySources[0].tenantId
-            ObjectId = $_.id
-            DisplayName = $_.displayName
-            userPrincipalName = $_.userPrincipalName
-            mail = $_.mail
+    if($org.internalSponsors) {
+        $org.internalSponsors | ForEach-Object {
+            [PSCustomObject] @{
+                Type = "InternalSponsor"
+                TenantId = $org.identitySources[0].tenantId
+                ObjectId = $_.id
+                DisplayName = $_.displayName
+                userPrincipalName = $_.userPrincipalName
+                mail = $_.mail
+            }
         }
     }
-    $org.externalSponsors | ForEach-Object {
-        [PSCustomObject] @{
-            Type = "ExternalSponsor"
-            TenantId = $org.identitySources[0].tenantId
-            ObjectId = $_.id
-            DisplayName = $_.displayName
-            userPrincipalName = $_.userPrincipalName
-            mail = $_.mail
+    if($org.externalSponsors) {
+        $org.externalSponsors | ForEach-Object {
+            [PSCustomObject] @{
+                Type = "ExternalSponsor"
+                TenantId = $org.identitySources[0].tenantId
+                ObjectId = $_.id
+                DisplayName = $_.displayName
+                userPrincipalName = $_.userPrincipalName
+                mail = $_.mail
+            }
         }
-    }     
+    }
 }
 
 $list | ft 
