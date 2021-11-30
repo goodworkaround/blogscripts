@@ -1,4 +1,4 @@
-# Script to create named locations
+# Script to create named locations for Azure regions
 
 The **Invoke-NamedLocationsCreation.ps1** script consumes the Microsoft managed JSON file found [here](https://www.microsoft.com/en-us/download/confirmation.aspx?id=56519), creating named locations in Azure AD, for use with conditional access:
 
