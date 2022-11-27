@@ -8,6 +8,8 @@ resource "azurerm_network_interface" "vm1nic" {
     subnet_id                     = azurerm_subnet.vm_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
+
+  tags = var.tags
 }
 
 resource "azurerm_windows_virtual_machine" "vm1" {
@@ -29,7 +31,9 @@ resource "azurerm_windows_virtual_machine" "vm1" {
   source_image_reference {
     publisher = "MicrosoftWindowsServer"
     offer     = "WindowsServer"
-    sku       = "2012-Datacenter"
+    sku       = "2022-Datacenter"
     version   = "latest"
   }
+
+  tags = var.tags
 }

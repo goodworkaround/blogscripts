@@ -34,6 +34,8 @@ resource "azurerm_public_ip" "bastion" {
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
   sku                 = "Standard"
+
+  tags = var.tags
 }
 
 resource "azurerm_bastion_host" "bastion" {
@@ -47,6 +49,7 @@ resource "azurerm_bastion_host" "bastion" {
     name                 = "configuration"
     subnet_id            = azurerm_subnet.bastion_subnet.id
     public_ip_address_id = azurerm_public_ip.bastion.id
-  allocation_method   = "Static"
   }
+
+  tags = var.tags
 }
