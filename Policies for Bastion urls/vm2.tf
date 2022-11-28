@@ -1,5 +1,5 @@
-resource "azurerm_network_interface" "vm1nic" {
-  name                = "${var.resource_naming_prefix}vm1nic"
+resource "azurerm_network_interface" "vm2nic" {
+  name                = "${var.resource_naming_prefix}vm2nic"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
@@ -12,15 +12,15 @@ resource "azurerm_network_interface" "vm1nic" {
   tags = var.tags
 }
 
-resource "azurerm_windows_virtual_machine" "vm1" {
-  name                = "vm1"
+resource "azurerm_windows_virtual_machine" "vm2" {
+  name                = "vm2"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   size                = "Standard_F2"
   admin_username      = "adminuser"
   admin_password      = "P@$$w0rd1234!"
   network_interface_ids = [
-    azurerm_network_interface.vm1nic.id,
+    azurerm_network_interface.vm2nic.id,
   ]
 
   os_disk {
@@ -36,4 +36,9 @@ resource "azurerm_windows_virtual_machine" "vm1" {
   }
 
   tags = var.tags
+  lifecycle {
+    ignore_changes = [
+      identity
+    ]
+  }
 }
