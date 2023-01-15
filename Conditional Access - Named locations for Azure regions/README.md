@@ -6,7 +6,7 @@ The **Invoke-NamedLocationsCreation.ps1** script consumes the Microsoft managed 
 
 ## Usage
 
-The script requires an access token with the Graph scope 'Policy.ReadWrite.ConditionalAccess'
+The script requires an access token with the Graph scope 'Policy.ReadWrite.ConditionalAccess' and 'Policy.Read.All'
 
 ```PowerShell
 $AccessToken = "...." # Get from graph.microsoft.io
