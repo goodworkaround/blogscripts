@@ -7,4 +7,5 @@ resource "azuread_group" "security_groups" {
   display_name     = each.key
   security_enabled = true
   mail_enabled     = false
+  owners           = [data.azuread_client_config.current.object_id]
 }

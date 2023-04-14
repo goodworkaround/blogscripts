@@ -5,6 +5,7 @@ locals {
 resource "azuread_application" "applications" {
   for_each     = toset(local.applications)
   display_name = each.key
+  owners           = [data.azuread_client_config.current.object_id]
 }
 
 resource "azuread_service_principal" "applications" {
